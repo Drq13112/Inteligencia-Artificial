@@ -1,2 +1,6 @@
-﻿  problema_busqueda.cpp
-  ConsoleApplication2.vcxproj -> C:\Users\david\OneDrive\Documentos\4 curso\2 cuatri\Inteligencia artificial\ConsoleApplication2\Debug\ConsoleApplication2.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (ConsoleApplication2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  grafo.cpp
+  problema_busqueda.cpp
+  vista.cpp
+  Generating Code...
+  ConsoleApplication2.vcxproj -> C:\Users\david\OneDrive\Documentos\4 curso\2 cuatri\Inteligencia artificial\P1\ConsoleApplication2\Debug\P1_1.exe

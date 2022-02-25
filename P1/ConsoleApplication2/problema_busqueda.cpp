@@ -4,6 +4,21 @@
 
 namespace problema_busqueda
 {
+    bool repetido_lista_completa(const std::vector<Nodo_busqueda>& lista, const grafo::Nodo_grafo& estado)
+    {
+        Nodo_busqueda nodo;
+        bool interno = false;
+        for (size_t i = 0; i < lista.size(); i++)
+        {
+            nodo = lista[i];
+
+            if (estado == nodo.estado)//comparo con cada nodo que ya hay en la lista
+            {   
+                interno = true;
+            }
+        }
+        return interno;
+    }
     Solucion amplitud(grafo::Nodo_grafo& estado_inicial, grafo::Nodo_grafo& estado_objetivo)
     {
         std::vector<Nodo_busqueda> lista;//array de estructuras
@@ -41,51 +56,48 @@ namespace problema_busqueda
             *  I            I           1//B
             */
 
-              
-            //Expandimos el circulo del nodo-> Sucede una vez que se han expandido todos los nodos del nivel
-            //Uso un bucle burbuja para comprobar si uno de los nodos que vamos a meter en la lista ya está incluido
-            hijos = estado_inicial.sucesores();
-            for (size_t n = 0; n<hijos.size(); n++)
+            //Por si el nodo no se ha encontrado
+            if (indice >= lista.size())
             {
-                hijo = hijos[n];// Saco uno de los hijos
-                for(size_t i=0;i<lista.size();i++)
-                {
-                    nodo = lista[i];
-
-                    nodo_repetido = repetido_lista_completa(lista, hijo.second);
-
-                    if (hijo.second == nodo.estado)//comparo con cada nodo que ya hay en la lista
-                    {
-                        nodo_repetido = true;
-                    }
-                }
-                if (nodo_repetido==false)
-                {
-                    lista.push_back({ hijo.second,hijo.first, indice });
-                    num_hijos_en_lista++;
-                }
-                nodo_repetido = false;
-            }
-            //Ahora actualizamos el nodo a expandir-> uno de los hijos del nodo anterior
-            //Para ello expandimos el último nodo de la lista, para ello podemos usar el propio indice
-
-            indice++;// nodo completado, pasamos al siguiente nodo
-            nodos_expandidos++;
-            if (indice<lista.size())
-            {
-                nodo = lista[indice];
-                estado_inicial = nodo.estado;
-                if (estado_inicial == estado_objetivo)
-                {
-                    exito = true;
-
-                }
-
-            }else
-            {
-               
+            
                 std::cout << "No se ha podido encontrar el nodo objetivo" << std::endl;
                 break;
+            }
+            
+            nodo = lista[indice];
+            estado_inicial = nodo.estado;
+
+            //Coloco aquí la comprobación, porque en teoría se tiene que esperar a que se expanda 
+            // el nodo objetivo. Pero se podría hacer comprobando los hijos de cada nodo
+            if (estado_inicial == estado_objetivo)
+            {
+                exito = true;
+            }
+            //En caso de que no sea el nodo objetivo, expandimos el nodo
+            nodos_expandidos++;// Como no estamos expandiendo al siguiente nodo, incrementamos la variable
+            
+            
+            if (exito == false) {
+                //Expandimos el circulo del nodo-> Sucede una vez que se han expandido todos los nodos del nivel
+                //Uso un bucle burbuja para comprobar si uno de los nodos que vamos a meter en la lista ya está incluido
+                hijos = estado_inicial.sucesores();
+                for (size_t n = 0; n < hijos.size(); n++)
+                {
+                    hijo = hijos[n];// Saco uno de los hijos
+                    nodo_repetido = repetido_lista_completa(lista, hijo.second);
+                    if (nodo_repetido == false)
+                    {
+                        lista.push_back({ hijo.second,hijo.first, indice });
+                        num_hijos_en_lista++;
+
+                    }
+                    nodo_repetido = false;
+                }
+                //Ahora actualizamos el nodo a expandir-> uno de los hijos del nodo anterior
+                //Para ello expandimos el último nodo de la lista, para ello podemos usar el propio indice
+            
+            indice++;
+            
             }
         }
 
@@ -112,21 +124,5 @@ namespace problema_busqueda
         }
         std::reverse(secuencia_operadores.begin(), secuencia_operadores.end());
         return secuencia_operadores;
-    }
-
-
-    bool repetido_lista_completa(const std::vector<Nodo_busqueda>& lista, const grafo::Nodo_grafo& estado)
-    {
-        Nodo_busqueda nodo;
-        for (size_t i = 0; i < lista.size(); i++)
-        {
-            nodo = lista[i];
-
-            if (estado == nodo.estado)//comparo con cada nodo que ya hay en la lista
-            {
-                return true;
-            }
-        }
-        
     }
 }

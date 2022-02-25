@@ -38,9 +38,9 @@ namespace grafo
             } //Para ver por terminal que el vector esta vacio
             std::cout << " " << std::endl;
             sucesores.clear();
-
-            
         }
+        //Cierro el fichero
+        fichero.close();
     }
 
     std::vector<std::pair<std::string, Nodo_grafo>> Nodo_grafo::sucesores() const

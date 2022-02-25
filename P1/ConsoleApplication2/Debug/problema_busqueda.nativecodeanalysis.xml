@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\david\OneDrive\Documentos\4 curso\2 cuatri\Inteligencia artificial\P1\ConsoleApplication2\</FILEPATH>
+      <FILENAME>problema_busqueda.h</FILENAME>
+      <LINE>17</LINE>
+      <COLUMN>4</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'problema_busqueda::Nodo_busqueda::padre' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>problema_busqueda::Nodo_busqueda::{ctor}</FUNCTION>
+    <DECORATED>??0Nodo_busqueda@problema_busqueda@@QAE@XZ</DECORATED>
+    <FUNCLINE>17</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>problema_busqueda::Nodo_busqueda::padre</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

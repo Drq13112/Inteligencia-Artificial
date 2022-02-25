@@ -25,12 +25,13 @@ namespace grafo
             }
             void crea_nodo(const std::string& s, const std::vector<std::string>& v)
             {
-                nodos[s] = v;//vamos actualizando el array nodos en tiemppo real 
+                nodos[s] = v;//vamos actualizando el array nodos en tiempo real 
             }
             bool existe_nodo(const std::string& nombre) const
             {
                 return nodos.find(nombre) != nodos.end();
             }
+
         private:
             std::map<std::string, std::vector<std::string>> nodos;
             void carga_grafo(const std::string& nombre_fichero);
