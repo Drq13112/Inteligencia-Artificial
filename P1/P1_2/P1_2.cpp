@@ -41,33 +41,28 @@ int main()
                 std::cout << "no->1" << std::endl;
                 std::cin >> p;
 
-                //Hago un do while para que pregunte por lo menos una vez si hay que incluir nodos vecinos
-                do {
-                    switch (p)
-                    {
-                    case 0:
-                        v.clear();
+                switch (p)
+                {
+                case 0:
+                    v.clear();
 
-                        do {
+                    do {
 
-                            s2 = vista::solicita_string("Nodo vecino: ");
-                            //inserto el nodo en el array
-                            v.push_back(s2);
-                            std::cout << "Quiere añadir otro nodo? no->1, si->0 " << std::endl;
-                            std::cin >> p;
-                        } while (p == 0);
-                        break;
-
-                    case 1:
-                        v.clear();//vacio el array por que no tiene nodos vecinos
-                        break;
-
-                    default:
-                        break;
-                    }
+                        s2 = vista::solicita_string("Nodo vecino: ");
+                        //inserto el nodo en el array
+                        v.push_back(s2);
+                        std::cout << "Quiere añadir otro nodo? no->1, si->0 " << std::endl;
+                        std::cin >> p;
+                    } while (p == 0);
                     break;
-                } while (p != 0 && p != 1);
 
+                case 1:
+                    v.clear();//vacio el array por que no tiene nodos vecinos
+                    break;
+
+                default:
+                    break;
+                }
                 //creamos el nodo
                 grafo.crea_nodo(s1, v);
 

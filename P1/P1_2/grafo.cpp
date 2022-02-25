@@ -180,13 +180,11 @@ namespace grafo
     {
         std::ofstream fichero(nombre_fichero);
 
-        if (!fichero)
-            throw std::runtime_error("No se pudo abrir el fichero " + nombre_fichero);
-
         //Incluyo todos los datos en el fichero
         
         //Tamano de la lista de nodos
         fichero << nodos.size();
+        fichero << '\n';
 
         //Bucle en el que metemos todos los nodos:
 
@@ -200,14 +198,15 @@ namespace grafo
             fichero << it->first;
             array_aux=it->second;
             //Salto de linea
-            fichero << "/n";
+            fichero << '\n';
             //incluyo los vecinos en el fichero
             for (size_t i = 0; i < array_aux.size(); i++)
             {
                 fichero << array_aux[i];
             }
             //Salto de linea
-            fichero << "/n";
+            fichero << '\n';
+            it++;
         }
         //cierro el fichero;
         fichero.close();
