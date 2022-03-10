@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="planificacion_trayectorias" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/P8_1" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c++11" />
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add directory="C:/Users/trespa/Documents/SFML/lib" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/P8_1" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-std=c++17" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-std=c++11" />
+			<Add directory="../../Bibliotecas/SFML/include" />
+			<Add directory="../../Bibliotecas/Observador/include" />
+			<Add directory="vista" />
+			<Add directory="controlador" />
+			<Add directory="modelo" />
+		</Compiler>
+		<Linker>
+			<Add library="../../Bibliotecas/SFML/lib/libsfml-graphics.a" />
+			<Add library="../../Bibliotecas/SFML/lib/libsfml-graphics-s.a" />
+			<Add library="../../Bibliotecas/SFML/lib/libsfml-graphics-d.a" />
+			<Add library="../../Bibliotecas/SFML/lib/libsfml-graphics-s-d.a" />
+			<Add library="../../Bibliotecas/SFML/lib/libsfml-window.a" />
+			<Add library="../../Bibliotecas/SFML/lib/libsfml-system.a" />
+			<Add directory="../../Bibliotecas/SFML/lib" />
+		</Linker>
+		<Unit filename="controlador/controlador.cpp" />
+		<Unit filename="controlador/controlador.h" />
+		<Unit filename="controlador/main.cpp" />
+		<Unit filename="modelo/amplitud.h" />
+		<Unit filename="modelo/coste_uniforme.h" />
+		<Unit filename="modelo/cuadricula.cpp" />
+		<Unit filename="modelo/cuadricula.h" />
+		<Unit filename="modelo/nodo_cuadricula.cpp" />
+		<Unit filename="modelo/nodo_cuadricula.h" />
+		<Unit filename="modelo/problema_busqueda.h" />
+		<Unit filename="vista/casilla.cpp" />
+		<Unit filename="vista/casilla.h" />
+		<Unit filename="vista/imgs/cruz.png" />
+		<Unit filename="vista/imgs/cruz1.png" />
+		<Unit filename="vista/imgs/flecha_E.png" />
+		<Unit filename="vista/imgs/flecha_EN.png" />
+		<Unit filename="vista/imgs/flecha_ES.png" />
+		<Unit filename="vista/imgs/flecha_N.png" />
+		<Unit filename="vista/imgs/flecha_NE.png" />
+		<Unit filename="vista/imgs/flecha_NO.png" />
+		<Unit filename="vista/imgs/flecha_O.png" />
+		<Unit filename="vista/imgs/flecha_ON.png" />
+		<Unit filename="vista/imgs/flecha_OS.png" />
+		<Unit filename="vista/imgs/flecha_S.png" />
+		<Unit filename="vista/imgs/flecha_SE.png" />
+		<Unit filename="vista/imgs/flecha_SO.png" />
+		<Unit filename="vista/imgs/vacia.png" />
+		<Unit filename="vista/rejilla.cpp" />
+		<Unit filename="vista/rejilla.h" />
+		<Unit filename="vista/resources/arial.ttf" />
+		<Unit filename="vista/resources/sansation.ttf" />
+		<Unit filename="vista/texturas.h" />
+		<Unit filename="vista/vista.cpp" />
+		<Unit filename="vista/vista.h" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

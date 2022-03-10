@@ -1,0 +1,54 @@
+﻿  controlador.cpp
+  main.cpp
+  cuadricula.cpp
+  nodo_cuadricula.cpp
+  casilla.cpp
+C:\Users\david\OneDrive\Documentos\4 curso\2 cuatri\Inteligencia artificial\P4_Planificacion_trayectorias_giros_21_22_alumnos\vista\casilla.cpp(97,37): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\david\OneDrive\Documentos\4 curso\2 cuatri\Inteligencia artificial\P4_Planificacion_trayectorias_giros_21_22_alumnos\vista\casilla.cpp(97,28): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\david\OneDrive\Documentos\4 curso\2 cuatri\Inteligencia artificial\P4_Planificacion_trayectorias_giros_21_22_alumnos\vista\casilla.cpp(99,29): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\david\OneDrive\Documentos\4 curso\2 cuatri\Inteligencia artificial\P4_Planificacion_trayectorias_giros_21_22_alumnos\vista\casilla.cpp(99,22): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\david\OneDrive\Documentos\4 curso\2 cuatri\Inteligencia artificial\P4_Planificacion_trayectorias_giros_21_22_alumnos\vista\casilla.cpp(108,35): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
+C:\Users\david\OneDrive\Documentos\4 curso\2 cuatri\Inteligencia artificial\P4_Planificacion_trayectorias_giros_21_22_alumnos\vista\casilla.cpp(132,33): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  rejilla.cpp
+  vista.cpp
+C:\Users\david\OneDrive\Documentos\4 curso\2 cuatri\Inteligencia artificial\P4_Planificacion_trayectorias_giros_21_22_alumnos\vista\vista.cpp(11,69): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\david\OneDrive\Documentos\4 curso\2 cuatri\Inteligencia artificial\P4_Planificacion_trayectorias_giros_21_22_alumnos\vista\vista.cpp(11,55): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\david\OneDrive\Documentos\4 curso\2 cuatri\Inteligencia artificial\P4_Planificacion_trayectorias_giros_21_22_alumnos\vista\vista.cpp(15,51): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Generating Code...
+  P4_1.vcxproj -> C:\Users\david\OneDrive\Documentos\4 curso\2 cuatri\Inteligencia artificial\P4_Planificacion_trayectorias_giros_21_22_alumnos\Debug\P4_1.exe

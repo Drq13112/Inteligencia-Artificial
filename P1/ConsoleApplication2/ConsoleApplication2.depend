@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1645724158 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p1\consoleapplication2\grafo.cpp
+	"grafo.h"
+	<iostream>
+	<fstream>
+
+1645724135 c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p1\consoleapplication2\grafo.h
+	<vector>
+	<string>
+	<map>
+	<stdexcept>
+	<sstream>
+
+1645753585 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p1\consoleapplication2\p1_1.cpp
+	"problema_busqueda.h"
+	"vista.h"
+	<exception>
+	<iostream>
+
+1645022412 c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p1\consoleapplication2\problema_busqueda.h
+	"grafo.h"
+
+1645007830 c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p1\consoleapplication2\vista.h
+	"grafo.h"
+	"problema_busqueda.h"
+
+1645636393 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p1\consoleapplication2\problema_busqueda.cpp
+	"problema_busqueda.h"
+	<algorithm>
+	<iostream>
+
+1645007830 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p1\consoleapplication2\vista.cpp
+	"vista.h"
+	<iostream>
+

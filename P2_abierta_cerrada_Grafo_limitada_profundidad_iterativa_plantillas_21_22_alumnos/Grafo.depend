@@ -1,0 +1,40 @@
+# depslib dependency file v1.0
+1645472139 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p2_abierta_cerrada_grafo_limitada_profundidad_iterativa_plantillas_21_22_alumnos\grafo.cpp
+	"grafo.h"
+	<iostream>
+	<fstream>
+
+1645471324 c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p2_abierta_cerrada_grafo_limitada_profundidad_iterativa_plantillas_21_22_alumnos\grafo.h
+	<vector>
+	<string>
+	<sstream>
+	<map>
+
+1645992462 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p2_abierta_cerrada_grafo_limitada_profundidad_iterativa_plantillas_21_22_alumnos\main.cpp
+	"problema_busqueda.h"
+	"vista.h"
+	<exception>
+	<iostream>
+
+1645991642 c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p2_abierta_cerrada_grafo_limitada_profundidad_iterativa_plantillas_21_22_alumnos\problema_busqueda.h
+	<cstddef>
+	<vector>
+	<deque>
+	<algorithm>
+	"amplitud.h"
+	"profundidad.h"
+
+1645472849 c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p2_abierta_cerrada_grafo_limitada_profundidad_iterativa_plantillas_21_22_alumnos\amplitud.h
+
+1645999318 c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p2_abierta_cerrada_grafo_limitada_profundidad_iterativa_plantillas_21_22_alumnos\profundidad.h
+	<iostream>
+
+1645470934 c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p2_abierta_cerrada_grafo_limitada_profundidad_iterativa_plantillas_21_22_alumnos\vista.h
+	"grafo.h"
+	"problema_busqueda.h"
+	<iostream>
+
+1614194765 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p2_abierta_cerrada_grafo_limitada_profundidad_iterativa_plantillas_21_22_alumnos\vista.cpp
+	"vista.h"
+	<iostream>
+

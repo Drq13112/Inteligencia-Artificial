@@ -1,0 +1,36 @@
+12
+A
+3
+B C D
+B
+3
+A E I
+C
+5
+A D F I J
+D
+4
+A C G H
+E
+2
+B I
+F
+2
+C J
+G
+2
+D H
+H
+3
+D G K
+I
+4
+B C E J
+J
+4
+C F I K
+K
+2
+H J
+L
+0

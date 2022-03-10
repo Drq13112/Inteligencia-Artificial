@@ -1,0 +1,7 @@
+﻿  grafo.cpp
+  main.cpp
+  problema_busqueda.cpp
+  vista.cpp
+  Generating Code...
+MSVCRTD.lib(exe_winmain.obj) : error LNK2019: unresolved external symbol _WinMain@16 referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+C:\Users\david\OneDrive\Documentos\4 curso\2 cuatri\Inteligencia artificial\P3_Grafo_coste_uniforme_unordered_set_21_22\Debug\P3.exe : fatal error LNK1120: 1 unresolved externals

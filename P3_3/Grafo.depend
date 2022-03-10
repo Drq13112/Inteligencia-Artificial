@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1614172662 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p3_grafo_coste_uniforme_unordered_map_21_22_alumnos\grafo.cpp
+	"grafo.h"
+	<iostream>
+	<fstream>
+
+1646163871 c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p3_grafo_coste_uniforme_unordered_map_21_22_alumnos\grafo.h
+	<vector>
+	<string>
+	<sstream>
+	<map>
+
+1646174929 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p3_grafo_coste_uniforme_unordered_map_21_22_alumnos\main.cpp
+	"problema_busqueda.h"
+	"vista.h"
+	<exception>
+	<iostream>
+
+1646153057 c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p3_grafo_coste_uniforme_unordered_map_21_22_alumnos\problema_busqueda.h
+	<cstddef>
+	<vector>
+	<algorithm>
+	<unordered_set>
+	<unordered_map>
+	<deque>
+	"amplitud.h"
+	"coste_uniforme.h"
+
+1646040592 c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p3_grafo_coste_uniforme_unordered_map_21_22_alumnos\amplitud.h
+
+1646230292 c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p3_grafo_coste_uniforme_unordered_map_21_22_alumnos\coste_uniforme.h
+	<iostream>
+
+1614425976 c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p3_grafo_coste_uniforme_unordered_map_21_22_alumnos\vista.h
+	"grafo.h"
+	"problema_busqueda.h"
+	<iostream>
+
+1614507006 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\inteligencia artificial\p3_grafo_coste_uniforme_unordered_map_21_22_alumnos\vista.cpp
+	"vista.h"
+	<iostream>
+
