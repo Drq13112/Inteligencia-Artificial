@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1647257197 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\codeblocks\calculo_pi_21_22_alumnos\main.cpp
+	"dardos_pi.h"
+
+1647375591 c:\users\david\onedrive\documentos\4 curso\2 cuatri\codeblocks\calculo_pi_21_22_alumnos\dardos_pi.h
+	<stdexcept>
+	<iostream>
+	<sstream>
+
+1647376627 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\codeblocks\calculo_pi_21_22_alumnos\dardos_pi.cpp
+	"dardos_pi.h"
+	"generador_aleatorios.h"
+	<random>
+
+1647259213 c:\users\david\onedrive\documentos\4 curso\2 cuatri\codeblocks\calculo_pi_21_22_alumnos\generador_aleatorios.h
+	"randutils.h"
+
+1522318377 c:\users\david\onedrive\documentos\4 curso\2 cuatri\codeblocks\calculo_pi_21_22_alumnos\randutils.h
+	<cstddef>
+	<cstdint>
+	<cstdlib>
+	<random>
+	<array>
+	<functional>
+	<initializer_list>
+	<utility>
+	<type_traits>
+	<iterator>
+	<chrono>
+	<thread>
+	<algorithm>
+	<immintrin.h>
+	<process.h>
+	<unistd.h>
+

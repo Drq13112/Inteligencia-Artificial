@@ -1,0 +1,35 @@
+# depslib dependency file v1.0
+1645814535 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\codeblocks\p1_2\main.cpp
+	<exception>
+	<iostream>
+	"problema_busqueda.h"
+	"vista.h"
+
+1645022412 c:\users\david\onedrive\documentos\4 curso\2 cuatri\codeblocks\p1_2\problema_busqueda.h
+	"grafo.h"
+
+1645749822 c:\users\david\onedrive\documentos\4 curso\2 cuatri\codeblocks\p1_2\grafo.h
+	<vector>
+	<string>
+	<map>
+	<stdexcept>
+	<sstream>
+
+1645007830 c:\users\david\onedrive\documentos\4 curso\2 cuatri\codeblocks\p1_2\vista.h
+	"grafo.h"
+	"problema_busqueda.h"
+
+1645636393 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\codeblocks\p1_2\problema_busqueda.cpp
+	"problema_busqueda.h"
+	<algorithm>
+	<iostream>
+
+1645007830 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\codeblocks\p1_2\vista.cpp
+	"vista.h"
+	<iostream>
+
+1645814251 source:c:\users\david\onedrive\documentos\4 curso\2 cuatri\codeblocks\p1_2\grafo.cpp
+	"grafo.h"
+	<iostream>
+	<fstream>
+
