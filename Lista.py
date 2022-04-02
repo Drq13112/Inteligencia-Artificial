@@ -5,7 +5,7 @@ Created on Thu Mar  3 20:07:04 2022
 @author: david
 
 Este codigo implementa un menu interactivo para crear colas de prioridad.
-Se almecenarán los datos numericos de menor a mayor
+Se almecenarán los datos numericos de menor a mayor mediante moticulos binarios
 """
 
 
@@ -15,27 +15,24 @@ Se almecenarán los datos numericos de menor a mayor
 def push(lista,valor):
     
     lista.append(valor)
-    ordenada=False
-    while(ordenada==False):
-        ordenada=True
-        
-        for i in range(len(lista)-1):
-            
-            if(lista[i]>lista[i+1]):
-                ordenada=False
-                lista[i+1],lista[i]=lista[i],lista[i+1]
+    ordenar_lista(lista)
 def pop(lista):
     
-    print("Valor eliminado:")
-    min_valor=lista[0]
-    lista.remove(min_valor)
+    
+    print("Valor eliminado:",lista[0])
+    #Sobreescribimos el ultimo elemento como el primero
+    #Reducimos el tamaño del array
+    #y reordenamos
+    lista[0]=lista[len(lista)-1]
+    lista.pop()
+    ordenar_lista(lista)
     print(" ")
 
 def top(lista):
    
-    print("Valor de la raiz:")
-    print(lista[0])
+    print("Valor de la raiz:",lista[0])
     print(" ")
+    return lista[0]
 
 def Mostrar(lista):
     
@@ -45,25 +42,53 @@ def Mostrar(lista):
     print(" ")
     print(" ")
     
-def ordenar_lista(lista_new):
-
+def montoniza(lista, n, i):
     
-    #1º opcion: La que yo usaria personalmente
+        #inicializamos el padre como el valor más grande
+        padre = i
+        
+        #n=tamano del array
+        #l->left; Hijo de la izquierda
+        l = 2 * i + 1
+        #r->right
+        r = 2 * i + 2
+        
+        
+        #Vemos si el hijo de la izquierda del padre existe y si es
+        #mayor que su padre
+        if l < n and lista[i] < lista[l]:
+            padre = l
+        
+        #Vemos si el hijo de la derecha del padre existe y si es
+        #mayor que su padre
+        if r < n and lista[padre] < lista[r]:
+            padre = r
+            
+        # Si el padre no es el más grande, intercambianmos con el más grande
+        if padre != i:
+            lista[i], lista[padre] = lista[padre], lista[i]
+            montoniza(lista, n, padre)
+    
+def ordenar_lista(lista):
+    
+    #opcion rapida
     #lista_new.sort()
     
-    #2ºopcion; En caso de que prefieras que desarrollemos por nuestra cuenta:
-    ordenada=False
-    while(ordenada==False):
-        ordenada=True
+    #Usando monticulos
+    n = len(lista)
+  
+    # Construimos el monticulo max
+    # El operador // es de division entera.
+    for i in range(n//2, -1, -1):
+        montoniza(lista, n, i)
         
-        for i in range(len(lista_new)-1):
-            
-            if(lista_new[i]>lista_new[i+1]):
-                ordenada=False
-                lista_new[i+1],lista_new[i]=lista_new[i],lista_new[i+1]
-                
-    
-    print("Lista ordenada")
+        #Recorre el array desde tamaño_array-1 hasta 0 en pasos de 1
+        #Ejemplo: 20,19,18,17,.....2,1
+    for i in range(n-1, 0, -1):
+        # intercambiamos
+        lista[i], lista[0] = lista[0], lista[i]
+
+        montoniza(lista, i, 0)
         
         
         
