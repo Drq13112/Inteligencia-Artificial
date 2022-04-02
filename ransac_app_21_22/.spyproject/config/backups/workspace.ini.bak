@@ -8,5 +8,5 @@ recent_files = ['__main__.py', '__init__.py', 'modelo\\procesamiento.py', 'model
 
 [main]
 version = 0.2.0
-recent_files = ['modelo\\procesamiento.py', '__main__.py', 'controlador\\controlador.py', 'vista\\visualizacion.py']
+recent_files = []
 

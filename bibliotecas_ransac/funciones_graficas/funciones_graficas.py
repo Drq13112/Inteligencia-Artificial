@@ -4,12 +4,10 @@ import numpy as np
 
 
 def puntos_corte_recta(rectangulo, *args):
-    
     """Recibe un rectángulo y una recta en formato (A, B, C) o con los 3 parámetros individuales.
 
     Devuelve los puntos de corte de la recta con el rectángulo.
     """
-    #args=np.array(args)
     if len(args) == 1:
         A = args[0][0]
         B = args[0][1]

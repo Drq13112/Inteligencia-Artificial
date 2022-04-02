@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """Módulo que crea figuras aleatorias."""
 import numpy as np
-    
+
+
 def segmento2d_rand(p1, p2, num_puntos, des_std, tol=1., rng=np.random.RandomState()):
     """Crea un segmento aleatorio con num_puntos entre p1 y p2."""
     incr_x = p2[0] - p1[0]
@@ -137,16 +138,11 @@ def circunferencia2d_en_rectangulo_rand(rectangulo, num_puntos, des_std, radio_m
 
     # Para garantizar que cabe la circunferencia
     radio_maximo = min([x2-x1, y2-y1])
-    print('x1:',x1,'x2:',x2,'y1:',y1,'y2:',y2)
-    if radio_maximo< radio_minimo:
-        radio_maximo=radio_minimo
-
     if radio_maximo < radio_minimo:
-        raise ValueError('El tamaño del rectángulo no es válido según radio_minimo.radio calculado:'
-                         ,radio_maximo,'radio minimo:',format(radio_minimo))
-    
+        raise ValueError('El tamaño del rectángulo no es válido según radio_minimo = {}.'.
+                         format(radio_minimo))
+
     while True:
-        
         cx = rng.uniform(x1, x2)
         cy = rng.uniform(y1, y2)
         radio = rng.uniform(radio_minimo, radio_maximo)
@@ -177,15 +173,8 @@ def elipse2d_en_rectangulo_rand(rectangulo, num_puntos, des_std, semieje_minimo=
                          format(semieje_minimo))
 
     while True:
-        if(x2<x1):
-            x1,x2=x2,x1
-        
-        if(y2<y1):
-            y1,y2=y2,y1
-            
         cx = rng.uniform(x1, x2)
         cy = rng.uniform(y1, y2)
-            
         semieje_x = rng.uniform(semieje_minimo, semieje_maximo)
         semieje_y = rng.uniform(semieje_minimo, semieje_maximo)
 
@@ -214,7 +203,8 @@ def elipse2d_en_rectangulo_rand(rectangulo, num_puntos, des_std, semieje_minimo=
 
 def nube_en_rectangulo2d_rand(rectangulo, num_puntos, distancia_minima=100.,
                               rng=np.random.RandomState()):
-    """Crea una nube de num_puntos inscritos en un rectángulo."""
+    """Crea una nube de num_puntos inscritos en un rectángulo.
+    El rectángulo tiene sus ejes paralelos a los coordenados."""
     x1 = rectangulo[0]
     y1 = rectangulo[1]
     x2 = rectangulo[2]

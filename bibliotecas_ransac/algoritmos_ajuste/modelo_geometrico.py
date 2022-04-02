@@ -23,7 +23,7 @@ class ModeloGeometrico:
         self._parametros = tuple([None]*num_parametros)
 
     def __copy__(self):
-        """Sobrecarga de la función copy(). para que haga una copia profunda de la clase"""
+        """Sobrecarga de la función copy()."""
         clase = self.__class__
         nueva_instancia = clase.__new__(clase)
         nueva_instancia.__dict__.update(self.__dict__)
@@ -38,7 +38,7 @@ class ModeloGeometrico:
         """Virtual, calcula el "error", con signo, entre punto y el modelo dado por _parametros."""
         raise NotImplementedError('Debes definir el método error()')
 
-    @property #Es un decorador
+    @property
     def parametros(self):
         """Tupla con los parámetros."""
         return self._parametros
@@ -77,7 +77,7 @@ def inliers_outliers(modelo_geometrico, datos, tolerancias=(1., 1.)):
 
 
 def errores(modelo_geometrico, datos, tolerancia=1):
-    """Devuelve el vector de errores con signo."""
+    """Devuelve el vector de errores en valor absoluto."""
     errores = np.array([modelo_geometrico.error(x) for x in datos])
     return errores
 
@@ -89,7 +89,7 @@ def errores_abs(modelo_geometrico, datos, tolerancia=1):
 
 
 def errores_cuadrado(modelo_geometrico, datos, tolerancia=1):
-    """Devuelve el vector de errores al cuadrado."""
+    """Devuelve el vector de errores en valor absoluto."""
     errores = np.array([modelo_geometrico.error(x)**2 for x in datos])
     return errores
 
