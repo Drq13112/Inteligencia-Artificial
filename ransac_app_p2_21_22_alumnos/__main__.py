@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 """Fichero principal de la practica ransac.
 
 Permite la ejecución desde línea de comandos.

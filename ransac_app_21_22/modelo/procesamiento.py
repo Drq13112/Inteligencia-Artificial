@@ -24,7 +24,7 @@ def procesamiento(puntos):
     ransac_recta = ransac.Ransac(mod_rect.ModeloRecta2d, TOL_RANSAC)
     marcador=False
     iterador=0
-    #print('puntos:',len(puntos))
+    print('puntos:',len(puntos))
     diccionario={'outliers':[],'recta':[],'inliers':[],'circunferencia':[] }
     lista_rectas=[]
     lista_circunferencias=[]
@@ -85,7 +85,6 @@ def procesamiento(puntos):
             diccionario['circunferencia']=circ_1.parametros
             lista_circunferencias.append(circ_1.parametros)
             lista_inliers.append(inliers_circ_1)
-            break
             
         else:
             break

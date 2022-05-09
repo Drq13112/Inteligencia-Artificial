@@ -15,8 +15,10 @@ def visualiza_puntos(rectangulo_imagen, puntos):
     plt.xlim(x1, x2)
     plt.ylim(y1, y2)
 
-    if puntos:
+    if len(puntos):
         plt.scatter(puntos[:, 0], puntos[:, 1], s=0.1)
+        
+        
     ax.set_aspect(1)
     plt.show()
 
@@ -38,8 +40,8 @@ def visualiza_figuras(rectangulo_imagen, figuras, puntos):
     plt.xlim(x1, x2)
     plt.ylim(y1, y2)
 
-    if puntos:
-        plt.scatter(puntos[:, 0], puntos[:, 1], s=0.1)
+    #if puntos:
+    plt.scatter(puntos[:, 0], puntos[:, 1], s=0.1)
 
     for segmento in figuras['segmento']:
         p1 = segmento[0]
@@ -54,10 +56,10 @@ def visualiza_figuras(rectangulo_imagen, figuras, puntos):
         p2 = rect[1]
         p3 = rect[2]
         p4 = rect[3]
-        plt.plot([p1[0], p2[0]], [p1[1], p2[1]], 'g')
-        plt.plot([p2[0], p3[0]], [p2[1], p3[1]], 'g')
-        plt.plot([p3[0], p4[0]], [p3[1], p4[1]], 'g')
-        plt.plot([p4[0], p1[0]], [p4[1], p1[1]], 'g')
+        plt.plot([p1[0], p2[0]], [p1[1], p2[1]], 'b')
+        plt.plot([p2[0], p3[0]], [p2[1], p3[1]], 'b')
+        plt.plot([p3[0], p4[0]], [p3[1], p4[1]], 'b')
+        plt.plot([p4[0], p1[0]], [p4[1], p1[1]], 'b')
 
     ax.set_aspect(1)
     plt.show()
