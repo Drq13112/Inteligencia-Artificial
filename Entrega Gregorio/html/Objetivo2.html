@@ -1,0 +1,861 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Objetivo 2: Usando redes neuronales</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-06-14"><meta name="DC.source" content="Objetivo2.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Objetivo 2: Usando redes neuronales</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Introducci&oacute;n</a></li><li><a href="#2">Metodolog&iacute;a empleada para entrenar las redes</a></li><li><a href="#3">Criterio de elecci&oacute;n del modelo</a></li><li><a href="#4">Creo los arreglos donde almcenar&eacute; los modelos</a></li><li><a href="#5">Creaci&oacute;n de los sets de entreno y evaluaci&oacute;n</a></li><li><a href="#6">ANN: red neuronal cascadeforward, perceptr&oacute;n multicapa</a></li><li><a href="#7">Configuracion:</a></li><li><a href="#8">Funciones de activacion de cada capa</a></li><li><a href="#9">Entreno de los 9 modelos cascadeforward</a></li><li><a href="#10">Test de los 9 modelos cascadeforward</a></li><li><a href="#11">Calculo el error medio de cada modelo:</a></li><li><a href="#12">Red RBF: Radia Basis Funtion Network</a></li><li><a href="#13">Configuraci&oacute;n</a></li><li><a href="#14">Creo las 9 redes RBF</a></li><li><a href="#15">Testeo de las 9 redes</a></li><li><a href="#16">Conclusiones del entrenamiento de los modelos neuronales</a></li><li><a href="#17">Algoritno Gen&eacute;tico</a></li><li><a href="#18">Funciones Fitness</a></li><li><a href="#19">Resultados del AG:</a></li><li><a href="#20">Prueba con el modelo neuronal</a></li><li><a href="#21">Entrada Escal&oacute;n simple</a></li><li><a href="#22">Secuencia de entradas escal&oacute;n</a></li><li><a href="#23">Entrada oscilatoria</a></li><li><a href="#24">Conclusiones</a></li><li><a href="#25">Funcion usada para probar el modelo</a></li><li><a href="#26">Funcion usada para preparar los sets</a></li></ul></div><h2 id="1">Introducci&oacute;n</h2><p>Durante este apartado voy a dise&ntilde;ar y entrenar varias redes neuronales con la finalidad de obtener un modelo lo m&aacute;s parecido posible al real. Una vez selecionada la red, obtendr&eacute; los parametros m&aacute;s optimos para el modelos mediante un algoritmo gen&eacute;tico.</p><h2 id="2">Metodolog&iacute;a empleada para entrenar las redes</h2><p>Voy a crear 18 modelos distintos, 9 cascadeforward y otros 9 RBF. Dispongo de 9 paquetes de datos, formados cada uno por 2 ficheros. Uno de los ficheros contiene las entradas del sistema y el otro las salidas del sistema para dichas entradas.</p><p>El m&eacute;todo consiste en usar 8 de los 9 paquetes unicamente para entrenar, mientras que el paquete restante servir&aacute; para la validaci&oacute;n del modelo entrenado.</p><p>Rotando el paquete se evaluaci&oacute;n obtenemos los 9 modelos comentados al principio, cada uno evaluado con un set distino y entrenados con los restantes.</p><h2 id="3">Criterio de elecci&oacute;n del modelo</h2><p>De entre los 2 grupos eligir&eacute; aquel cuyo error medio sea menor. Una vez selecccionado el grupo, eligir&eacute; aquel modelo cuyo error sea m&aacute;s pr&oacute;ximo al error medio del grupo. Eligo este criter&iacute;o para que el modelo final no sea aquel que tenga ni el peor ni el mejor rendimiento. Pues lo que m&aacute;s me interesa es que el modelo tenga un rendimiento similar al obtenido durante su entrenamiento y evaluaci&oacute;n.</p><p><b>Si eligio el modelo con el *peor rendimiento</b> me asegurar&iacute;a de que el rendimiento de la red en el peor de los casos ser&iacute;a parecido al despesempe&ntilde;ado durante el test, pero perder&iacute;a la oportunidad de usar otras redes que funcionan mejor.</p><p>*Por el contrario, si eligo la red cuyo desempe&ntilde;o ha sido el m&aacute;s alto durante su entrenamiento y su test de validaci&oacute;n, me estoy arriesgando a que dicha red en realidad no sea tan buena como aparenta. Pues existe la posibilidad de que el test de validaci&oacute;n era muy parecido a los de entrenamiento y por eso ha obtenido muy buen rendimiento. Por lo que existe un posibilidad bastante alta de que si sometemos la red a otras situaciones su rendimiento empeore muchisimo. Lo cual har&iacute;a su ejecuci&oacute;n muy impredecible al igual que el caso anterior.</p><p>Tambi&eacute;n puede suceder que debido a la estrutura de entrenamiento y testeo que estoy aplicando, el test de dicha red ha sido m&aacute;s 'sencillo' que el del resto de redes. Lo cual provocar&iacute;a que la elecci&oacute;n del modelo estuviera sesgada.</p><p>Es por estas razones por las que considero que la mejor opci&oacute;n es elegir aquel modelo cuyo rendimiento est&aacute; en la media del grupo. De esta forma reducimos la posibilidad de que el modelo funcione peor de lo esperado, pero tambi&eacute;n la posibilidad de que funcione mejor.</p><h2 id="4">Creo los arreglos donde almcenar&eacute; los modelos</h2><p>Creo los arrays donde voy a almacenar los 18 modelos</p><pre class="codeinput"><span class="comment">% Modelos=cell(1,9);</span>
+<span class="comment">% Modelos_RBF=cell(1,9);</span>
+</pre><h2 id="5">Creaci&oacute;n de los sets de entreno y evaluaci&oacute;n</h2><p>Organizo los datos de la forma comentada: 2 matrices para el entreno de tama&ntilde;o 8000x9, una de entrada y la otra de salida</p><p>Las columnas tienen el siguiente orden:</p><p>SetEntrada: Entrada2, Entrada3, Entrada4, Entrada5, Entrada1, Entrada3, Entrada4,...</p><p>SetSalida: Salida2, Salida3, Salida4, Salida5, Salida1, Salida3, Salida4,...</p><p>Mientras que las matrices de validacion siguen este orden:</p><p>Entrada1, Entrada2, Entrada3,... Salida1, Salida2, Salida3,...</p><p>De esta forma entreno con 8 de los 9 ficheros y testeo con el restante</p><pre class="codeinput"><span class="comment">% SetEntrada=[];</span>
+<span class="comment">% SetSalida=[];</span>
+<span class="comment">% ValidacionEntrada=[];</span>
+<span class="comment">% ValidacionSalida=[];</span>
+<span class="comment">% Errores_test=zeros(1,9);</span>
+<span class="comment">% Errores_Entrenamiento=zeros(1,9);</span>
+<span class="comment">% Errores_RBF=zeros(1,9);</span>
+<span class="comment">% Performance_Entrenamiento=zeros(1,9);</span>
+<span class="comment">% Performance_Test=zeros(1,9);</span>
+
+<span class="comment">% % El iterador i lo uso para especificar el set de validacion y el resto de</span>
+<span class="comment">% % sets ser&aacute;n los de entrenamiento</span>
+<span class="comment">% % Ejemplo:</span>
+<span class="comment">% %</span>
+<span class="comment">% % i=4-&gt;SetValidacion=4;SetEntreno=1,2,3,5,6,7,8,9</span>
+
+<span class="comment">% for i=1:9</span>
+<span class="comment">%     i;</span>
+<span class="comment">%</span>
+<span class="comment">%     %Cargo los datos de valizacion en una matriz</span>
+<span class="comment">%     miniSetEntrada=[];</span>
+<span class="comment">%     miniSetSalida=[];</span>
+<span class="comment">%     [ValidacionEntrada,ValidacionSalida]=ActualizaDatos(ValidacionEntrada,ValidacionSalida,i,1);</span>
+<span class="comment">%     switch i</span>
+<span class="comment">%         case 1</span>
+<span class="comment">%             for j=2:9</span>
+<span class="comment">%                 j;</span>
+<span class="comment">%                 [miniSetEntrada,miniSetSalida]=ActualizaDatos(miniSetEntrada, miniSetSalida,j,0);</span>
+<span class="comment">%             end</span>
+<span class="comment">%         otherwise</span>
+<span class="comment">%             for j=1:i-1</span>
+<span class="comment">%                 j;</span>
+<span class="comment">%                 [miniSetEntrada,miniSetSalida]=ActualizaDatos(miniSetEntrada, miniSetSalida,j,0);</span>
+<span class="comment">%             end</span>
+<span class="comment">%             for j=i+1:9</span>
+<span class="comment">%                 j;</span>
+<span class="comment">%                 [miniSetEntrada,miniSetSalida]=ActualizaDatos(miniSetEntrada, miniSetSalida,j,0);</span>
+<span class="comment">%</span>
+<span class="comment">%             end</span>
+<span class="comment">%     end</span>
+<span class="comment">%     SetSalida=[SetSalida,miniSetSalida];</span>
+<span class="comment">%     SetEntrada=[SetEntrada,miniSetEntrada];</span>
+<span class="comment">%</span>
+<span class="comment">% end</span>
+<span class="comment">% SetEntrada;</span>
+<span class="comment">% SetSalida;</span>
+<span class="comment">% ValidacionSalida;</span>
+<span class="comment">% ValidacionEntrada;</span>
+</pre><h2 id="6">ANN: red neuronal cascadeforward, perceptr&oacute;n multicapa</h2><h2 id="7">Configuracion:</h2><pre class="codeinput"><span class="comment">% A base de ir probando e ir modificando parametros he llegado a esta</span>
+<span class="comment">% configuraci&oacute;n.</span>
+
+<span class="comment">% NeuronasPorCapa=[20,50,20];</span>
+<span class="comment">% for i=1:9</span>
+<span class="comment">%</span>
+<span class="comment">%     MiNet=cascadeforwardnet(NeuronasPorCapa);</span>
+<span class="comment">%     MiNet.divideParam.trainRatio=1;</span>
+<span class="comment">%     MiNet.divideFcn = 'dividerand';</span>
+<span class="comment">%     MiNet.trainParam.max_fail=20;</span>
+<span class="comment">%     MiNet.trainParam.epochs=100;</span>
+<span class="comment">%     MiNet.performFcn='mse';                     %MSE-&gt;Mean square error</span>
+<span class="comment">%     MiNet.trainParam.goal=1e-5;                 %Objetivo performance</span>
+<span class="comment">%     MiNet.trainParam.showWindow=false;</span>
+</pre><h2 id="8">Funciones de activacion de cada capa</h2><pre class="codeinput"><span class="comment">%     MiNet.layers{1}.transferFcn='tansig';</span>
+<span class="comment">%     MiNet.layers{2}.transferFcn='tansig';</span>
+<span class="comment">%     MiNet.layers{3}.transferFcn='tansig';</span>
+</pre><h2 id="9">Entreno de los 9 modelos cascadeforward</h2><pre class="codeinput"><span class="comment">%     % Saco los datos de entrenamiento ordenados anteriormente</span>
+<span class="comment">%     DatosEntrada=SetEntrada(:,i);</span>
+<span class="comment">%     DatosSalida=SetSalida(:,i);</span>
+<span class="comment">%     % Entrenamiento</span>
+<span class="comment">%     [MiNet,InfoEntreno,SalidaEstimada,Error]=train(MiNet,DatosEntrada',DatosSalida');</span>
+<span class="comment">%</span>
+<span class="comment">%     % Tenemos dos formar de medir el desempe&ntilde;o durante el entrenamiento:</span>
+<span class="comment">%</span>
+<span class="comment">%     % *Con la funci&oacute;n performance que nos da el error cuadr&aacute;tico medio entre</span>
+<span class="comment">%     % la salida estimada y la real</span>
+<span class="comment">%</span>
+<span class="comment">%     % *Con el parametro error que devuelve el entrenamiento</span>
+<span class="comment">%</span>
+<span class="comment">%     Errores_Entrenamiento(:,i)=mean(Error');</span>
+<span class="comment">%     % Error caudr&aacute;tico medio</span>
+<span class="comment">%     Perform_Entreno=perform(MiNet,DatosSalida',SalidaEstimada');</span>
+<span class="comment">%     Performance_Entrenamiento(:,i)=Perform_Entreno;</span>
+<span class="comment">%     Modelos{i}=MiNet;</span>
+<span class="comment">% end</span>
+<span class="comment">% Performance_Entrenamiento</span>
+<span class="comment">% Errores_Entrenamiento</span>
+</pre><h2 id="10">Test de los 9 modelos cascadeforward</h2><pre class="codeinput"><span class="comment">% for i=1:9</span>
+<span class="comment">%</span>
+<span class="comment">%     MiNet=Modelos{i};</span>
+<span class="comment">%     DatosEntrada=ValidacionEntrada(:,i);</span>
+<span class="comment">%     DatosSalida=ValidacionSalida(:,i);</span>
+<span class="comment">%     SalidaEstimada=MiNet(DatosEntrada');</span>
+<span class="comment">%</span>
+<span class="comment">%     % Calculo el error de de la salida estimada respecto a la salida de</span>
+<span class="comment">%     % validacion</span>
+<span class="comment">%</span>
+<span class="comment">%     Errores_test(:,i)=mean(abs(SalidaEstimada'-DatosSalida));</span>
+<span class="comment">%     Perform_test=perform (MiNet,DatosSalida',SalidaEstimada');%Error cuadratico medio</span>
+<span class="comment">%     Performance_Test(:,i)=Perform_test;</span>
+<span class="comment">%</span>
+<span class="comment">%     sgtitle('Test de todos los modelos CascadeForward')</span>
+<span class="comment">%     subplot(3,3,i),plot([1:1000],DatosEntrada,[1:1000],SalidaEstimada,[1:1000],DatosSalida)</span>
+<span class="comment">%     title(['Evaluacion',int2str(i)],['Performance: ',num2str(Perform_test)])</span>
+<span class="comment">%     legend({'DatosEntrada','SalidaEstimada','DatosSalida'},'Location','southwest')</span>
+<span class="comment">%</span>
+<span class="comment">% end</span>
+<span class="comment">%</span>
+<span class="comment">% Performance_Test</span>
+</pre><h2 id="11">Calculo el error medio de cada modelo:</h2><pre class="codeinput"><span class="comment">% Errores_test</span>
+</pre><h2 id="12">Red RBF: Radia Basis Funtion Network</h2><p>Una vez creados los 9 modelos cascadeforward, creo los 9 modelos restantes usando una red tipo RBF(Radio Funtion network).</p><p>La funci&oacute;n newbr ir&aacute; aumentado la cantidad de neuronas en las capas ocultas hasta alacanzar el error establecido como meta. El problema que me ha surgido con este modelo reside en que la red por muchas neuronas que meta, el error no baja de 6.01, por lo que pondr&eacute; como meta un error cuadr&aacute;tico medio de 6.015. Dicho rendimiento es alcanzado entre las 50 Y 0 neuronas en la capa oculta.</p><h2 id="13">Configuraci&oacute;n</h2><pre class="codeinput"><span class="comment">% ObjetivoError=6.015;</span>
+<span class="comment">% SpreadCte=1;</span>
+</pre><h2 id="14">Creo las 9 redes RBF</h2><pre class="codeinput"><span class="comment">% for i=1:9</span>
+<span class="comment">%     DatosEntrada=SetEntrada(:,i);</span>
+<span class="comment">%     DatosSalida=SetSalida(:,i);</span>
+<span class="comment">%     MiNetRBF=newrb(DatosEntrada',DatosSalida',ObjetivoError,SpreadCte);</span>
+<span class="comment">%     Modelos_RBF{i}=MiNetRBF;</span>
+<span class="comment">% end</span>
+</pre><h2 id="15">Testeo de las 9 redes</h2><pre class="codeinput"><span class="comment">% for i=1:9</span>
+<span class="comment">%     MiNetRBF=Modelos_RBF{i};</span>
+<span class="comment">%     DatosEntrada=ValidacionEntrada(:,i);</span>
+<span class="comment">%     DatosSalida=ValidacionSalida(:,i);</span>
+<span class="comment">%     SalidaEstimadaRBF=MiNetRBF(DatosEntrada');</span>
+<span class="comment">%     Errores_RBF(:,i)=mean(abs(SalidaEstimadaRBF'-DatosSalida));</span>
+<span class="comment">%     sgtitle('Test de todos los modelos Radia Basis');</span>
+<span class="comment">%     subplot(3,3,i),plot([1:1000],DatosEntrada,[1:1000],SalidaEstimadaRBF,[1:1000],DatosSalida)</span>
+<span class="comment">%     title(['Evaluacion',int2str(i)],['Performance: ',num2str(Errores_RBF(:,i))])</span>
+<span class="comment">%     legend({'DatosEntrada','SalidaEstimada','DatosSalida'},'Location','southwest')</span>
+<span class="comment">% end</span>
+<span class="comment">% Errores_RBF</span>
+<span class="comment">% media_errores_RBF=mean(Errores_RBF')</span>
+</pre><h2 id="16">Conclusiones del entrenamiento de los modelos neuronales</h2><p>Como se puede ver, el resultado de las redes RBF es significativamente mejor que el de las redes en cascasda, por lo que selecionar&eacute; una de estas como modelo del sulfitador. Siguiendo con la metodolog&iacute;a explicada al principio del informe, eligir&eacute; el modelo cuyo desempe&ntilde;o est&aacute; m&aacute;s cercano a la media la cual vemos que es: 2.19 aprox</p><p>Por lo que el modelo que m&aacute;s se ajusta es el modelo 8. Esto lo podemos ver en la figura que contiene el resultado de test de cada uno de los modelos.</p><p>Sin embargo, el error medio en todos los modelos es bastante grande y podemos decir que el comporamiento de estos en general es muy malo. Sospecho que se debe a la falta de datos de entrenamiento, de modo que si este fuera el problema y no se pudiera disponer de m&aacute;s sets, se podr&iacute;an obtener m&aacute;s mezclando sets.</p><p>A&uacute;n as&iacute;, he probado a entrenar las redes variando muchos parametos y el desempe&ntilde;o apenas mejoraba. Incluyendo la posibilidad de que entrenar una red con un &uacute;nico set durante 500 epocas y haciendo la validaci&oacute;n con ese mismo set de entrenamiento.</p><p>Sin embargo el modelo no mejoraba apenas, lo cual me daba a enteder que el problema puede radicar en que este tipo de red no es adecuada para simular este tipo de comportamientos. No obstante, creo que este no es el problema, sino  que radica en la manera en la que introduzco los valores de los sets durante los entrenamientos, haciendo as&iacute; incapaz a la red de mejorar.</p><p>Yo introduzco los datos de entrada y salida como columnas de 8000x1, la concantenzaci&oacute;n de los sets. Sin embargo, al introducir los valores de esta forma la red solo es capaz de asociar el valor instantaneo de la entrada con el valor instantaneo de la salida. De modo que no es capaz de seguir la din&aacute;mica oscilatoria de muchos sets. Para que pudiera seguirla deberiamos introducir todos los valores a la vez. De esta forma la red podr&iacute;a conocer los valores anteriores y siguientes de cada instante e identificar las diferentes din&aacute;micas.</p><p>A pesar de que esa fuera la soluci&oacute;n, desconozco la forma de implementar en simulink una red con 1000 entradas en el sistema dado en clase.</p><h2 id="17">Algoritno Gen&eacute;tico</h2><p>Una vez que tenemos el modelo del sulfitudor obtenido mediante redes neuronales. Pasamos a obtener los valores m&aacute;s adecuados para las Ke,Kd y Ku. Para ello se usar&aacute; un algoritmo gen&eacute;tico y se estudiar&aacute;n los resultados para los dos modelos.</p><p>La variable global soluci&oacute;n es utilizada para muestrear los valores que van tomando las Ks despues de cada iteraci&oacute;n. Esta idea la tom&eacute; de mi compa&ntilde;ero &Aacute;ngel Padilla, pues a el tambi&eacute;n le pasaba que muchas veces el algoritmo tardaba mucho m&aacute;s del tiempo limite impuesto. De esta forma si introducimos el comando Ctrl+C cortamos el proceso y podemos ver los valores que ha ido almacenando.</p><pre class="codeinput"><span class="comment">% global SulfitadorMamdani2022;</span>
+<span class="comment">%</span>
+<span class="comment">% global Solucion;</span>
+<span class="comment">% global MiNet;</span>
+<span class="comment">%</span>
+<span class="comment">% Solucion=[];</span>
+<span class="comment">%</span>
+<span class="comment">% Modelos=load('Modelos.mat');</span>
+<span class="comment">% MiNet=Modelos.Modelos{1,5};</span>
+<span class="comment">%</span>
+<span class="comment">% SulfitadorMamdani2022=readfis("P1.fis");</span>
+<span class="comment">% NParametrosSintonizar=3;</span>
+<span class="comment">%</span>
+<span class="comment">% % Defino unos margenes algo amplios para no quedarme en 'm&iacute;nimos locales'</span>
+<span class="comment">%</span>
+<span class="comment">% lb=[0 0 0];%low bound -&gt; limite inferior</span>
+<span class="comment">% ub=[20 20 20];%limite superior -&gt; limite superior</span>
+<span class="comment">%</span>
+<span class="comment">% rng default;</span>
+<span class="comment">%</span>
+<span class="comment">% funOBJ=@Funcion_FitnessObjetivo;</span>
+<span class="comment">%</span>
+<span class="comment">% % Indico al algoritmo el tiempo maximo y el tama&ntilde;o de la poblacion, de esta</span>
+<span class="comment">% % forma puedo limitar su ejecuci&oacute;n y obtener los resultados que ha hecho,</span>
+<span class="comment">% % de lo contrario necesitaria un computador mucho m&aacute;s potente y m&aacute;s tiempo</span>
+<span class="comment">% % para ejecutar el algoritmo.</span>
+<span class="comment">%</span>
+<span class="comment">% time=3600*4;% Para las simulaciones he usado tiempos de 3 a 4h</span>
+<span class="comment">% population=20;</span>
+<span class="comment">% options=gaoptimset('TimeLimit',time,'PopulationSize',population);</span>
+<span class="comment">%</span>
+<span class="comment">% %Esta linea esta comentada, pero no tendr&iacute;a que estarlo pues es la qeu ejecuta el algoritmo.</span>
+<span class="comment">% [X,EVAL,EXITFLAG,OUTPUT,POPULATION,Scores]=ga(funOBJ,NParametrosSintonizar,[],[],[],[],lb,ub,[],[],options);</span>
+</pre><h2 id="18">Funciones Fitness</h2><p>Como ya he comentado antes, es la misma funci&oacute;n que la usada en el Objetivo 1. Quiero usar la misma para que la optimizaci&oacute;n sea la misma entre los dos objetivos y que la comparaci&oacute;n de resultados no este sesgada.</p><pre class="codeinput"><span class="comment">% function Error = Funcion_FitnessObjetivo(K)</span>
+<span class="comment">%</span>
+<span class="comment">% global SulfitadorMamdani2022;</span>
+<span class="comment">% global Solucion;</span>
+<span class="comment">% global MiNet;</span>
+<span class="comment">%</span>
+<span class="comment">% opt=simset('SrcWorkspace','Current');</span>
+<span class="comment">% warning off</span>
+<span class="comment">%</span>
+<span class="comment">% %Simulacion del sistema</span>
+<span class="comment">% Ke=K(1);</span>
+<span class="comment">% Kd=K(2);</span>
+<span class="comment">% Ku=K(3);</span>
+<span class="comment">%</span>
+<span class="comment">% Final=1000;</span>
+<span class="comment">% t=(1:Final);</span>
+<span class="comment">% U(t)=[ones(1,Final/4)*7,ones(1,Final/4)*5,ones(1,Final/4)*9,ones(1,Final/4)*6];</span>
+<span class="comment">% Input=[t',U'];</span>
+<span class="comment">% [t,x,y]=sim('sulfitadornn.slx',t,opt,Input);</span>
+<span class="comment">%</span>
+<span class="comment">% % Evaluacion; Para ver la evolucion de las Ks a lo largo de la optimizaci&oacute;n</span>
+<span class="comment">% Error=abs(mean(U'-y));</span>
+<span class="comment">% Solucion(end+1,1)=Ke;</span>
+<span class="comment">% Solucion(end,2)=Kd;</span>
+<span class="comment">% Solucion(end,3)=Ku;</span>
+<span class="comment">% Solucion(end,4)=Error;</span>
+<span class="comment">% end</span>
+</pre><h2 id="19">Resultados del AG:</h2><pre class="codeinput"><span class="comment">% Para el modelo de la red neuronal obtuve los siguientes resultados:</span>
+<span class="comment">% Ke=8.4587; Kd=1.7984; Ku=2.3936</span>
+<span class="comment">% En las fotos del directorio 'Imagenes_Objetivo2' podemos observar como el algortimo va convergiendo hacia los valores</span>
+<span class="comment">% optimos.</span>
+
+<span class="comment">% Ke:</span>
+<span class="comment">% plot(Solucion(:,1))</span>
+<span class="comment">% title('Ke')</span>
+<span class="comment">% Kd:</span>
+<span class="comment">% plot(Solucion(:,2))</span>
+<span class="comment">% title('Kd')</span>
+<span class="comment">% Ku:</span>
+<span class="comment">% plot(Solucion(:,3))</span>
+<span class="comment">% title('Ku')</span>
+</pre><h2 id="20">Prueba con el modelo neuronal</h2><p>Al igual que para el otro objetivo, probamos varias entradas sobre el modelo neuronal y vemos su resultado con las Ks obtenidas por el AG.</p><p>Para poder simular la red neuronal en simulink hay que romper el lazo algebriaco que se produce por la realimentaci&oacute;n del lazo. La soluci&oacute;n que he encontrado ha sido a&ntilde;adir el bloque Unit Delay. A groso modo lo que hace es implementar un retardo usando un tiempo de muestreo discreto especificado por el usuario. Ke=8.4587; Kd=1.7984; Ku=2.3936;</p><pre class="codeinput"><span class="comment">% Ke=X(1)</span>
+<span class="comment">% Kd=X(2)</span>
+<span class="comment">% Ku=X(3)</span>
+</pre><h2 id="21">Entrada Escal&oacute;n simple</h2><pre class="codeinput"><span class="comment">% Simula(2,1,t,Final);</span>
+</pre><h2 id="22">Secuencia de entradas escal&oacute;n</h2><pre class="codeinput"><span class="comment">% Simula(2,2,t,Final);</span>
+</pre><h2 id="23">Entrada oscilatoria</h2><pre class="codeinput"><span class="comment">% Simula(2,3,t,Final);</span>
+</pre><h2 id="24">Conclusiones</h2><p>Mientras que el resultado del objetivo 1 es muy bueno, el comportamiento de la red se comporta extremadamente mal. No es capaz de seguir el SetPoint en ninguno de los 3 casos.</p><p>Era predecible su horrible comportamiento, pues el entrenamiento de la red ha sido muy malo.</p><p>Si se hubiera logrado hacer que la red aprendiera de forma correcta, habr&iacute;a sido una opci&oacute;n m&aacute;s interesante que la de crear un modelo en simulink del sulfitador, pues para crear el modelo de la red solo hace falta tener datos de entrada y salida con los que entrenar el modelo.</p><p>Mientras que para crear el gemelo digitial del sulfitador tendr&iacute;amos que profundizar en su funcionamiento y las ecuaciones que lo rigen.</p><p>Luego, lo mejor siempre ser&aacute; tener un modelo digital de la planta, pero en caso de tener que construirlo, la mejor opci&oacute;n ser&aacute; crear un modelo basado en redes neuronales.</p><h2 id="25">Funcion usada para probar el modelo</h2><pre class="codeinput"><span class="comment">% function Simula(tipo_red,entrada,t,Final)</span>
+<span class="comment">% switch entrada</span>
+<span class="comment">%     case 1</span>
+<span class="comment">%         U(t)=ones(1,Final)*6;</span>
+<span class="comment">%     case 2</span>
+<span class="comment">%         U(t)=[ones(1,Final/4)*6,ones(1,Final/4)*8.25,ones(1,Final/4)*5.5,ones(1,Final/4)*6.3];</span>
+<span class="comment">%     case 3</span>
+<span class="comment">%         U(t)=sin(t*0.01)+6;</span>
+<span class="comment">% end</span>
+<span class="comment">% Input=[t',U'];</span>
+<span class="comment">% switch tipo_red</span>
+<span class="comment">%     case 1</span>
+<span class="comment">%         [a,b,y]=sim('sulfitador.slx',t,[],Input);</span>
+<span class="comment">%         error_medio=abs(mean(U'-y))</span>
+<span class="comment">%         figure('Name','Evaluacion modelo simulink');</span>
+<span class="comment">%         plot(t,U,'-',t,y,'--');</span>
+<span class="comment">%     case 2</span>
+<span class="comment">%</span>
+<span class="comment">%         [a,b,y]=sim('sulfitadornn.slx',t,[],Input);</span>
+<span class="comment">%         error_medio=abs(mean(U'-y))</span>
+<span class="comment">%         figure('Name','Evaluacion modelo simulink');</span>
+<span class="comment">%         plot(t,U,'-',t,y,'--');</span>
+<span class="comment">% end</span>
+<span class="comment">%</span>
+<span class="comment">% end</span>
+</pre><h2 id="26">Funcion usada para preparar los sets</h2><pre class="codeinput"><span class="comment">% function [SetEntrada,SetSalida]=ActualizaDatos(SetEntrada, SetSalida,j,tipo)</span>
+<span class="comment">%</span>
+<span class="comment">%     filenameInPut=sprintf('Ph%d_input2022.mat',j);</span>
+<span class="comment">%     filenameOutPut=sprintf('Ph%d_OutPut2022.mat',j);</span>
+<span class="comment">%     DatosLeidosInput=load(filenameInPut);</span>
+<span class="comment">%     DatosEntrada=[DatosLeidosInput.Dt.Data];</span>
+<span class="comment">%</span>
+<span class="comment">%     %Creamos el set de entrada</span>
+<span class="comment">%     if tipo==0</span>
+<span class="comment">%         SetEntrada=[SetEntrada;DatosEntrada];</span>
+<span class="comment">%     else</span>
+<span class="comment">%         SetEntrada=[SetEntrada,DatosEntrada];</span>
+<span class="comment">%     end</span>
+<span class="comment">%</span>
+<span class="comment">%     DatosLeidosOutput=load(filenameOutPut);</span>
+<span class="comment">%     DatosSalida=[DatosLeidosOutput.ans.Data];</span>
+<span class="comment">%     %trunco la matriz a 1000</span>
+<span class="comment">%     DatosSalida=DatosSalida(1:1000,1);</span>
+<span class="comment">%</span>
+<span class="comment">%     %Creamos el set de salida</span>
+<span class="comment">%     if tipo==0</span>
+<span class="comment">%         SetSalida= [SetSalida;DatosSalida];</span>
+<span class="comment">%     else</span>
+<span class="comment">%         SetSalida= [SetSalida,DatosSalida];</span>
+<span class="comment">%     end</span>
+<span class="comment">%</span>
+<span class="comment">% end</span>
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Objetivo 2: Usando redes neuronales
+
+%% Introducción
+%
+% Durante este apartado voy a diseñar y entrenar varias redes neuronales
+% con la finalidad de obtener un modelo lo más parecido posible al real.
+% Una vez selecionada la red, obtendré los parametros más optimos para el
+% modelos mediante un algoritmo genético.
+
+%% Metodología empleada para entrenar las redes
+% Voy a crear 18 modelos distintos, 9 cascadeforward y otros 9 RBF.
+% Dispongo de 9 paquetes de datos, formados cada uno por 2 ficheros. Uno de
+% los ficheros contiene las entradas del sistema y el otro las salidas del 
+% sistema para dichas entradas.
+% 
+% El método consiste en usar 8 de los 9 paquetes unicamente para entrenar,
+% mientras que el paquete restante servirá para la validación del modelo
+% entrenado.
+%
+% Rotando el paquete se evaluación obtenemos los 9 modelos comentados al
+% principio, cada uno evaluado con un set distino y entrenados con los
+% restantes.
+
+%% Criterio de elección del modelo
+%
+% De entre los 2 grupos eligiré aquel cuyo error medio sea menor.
+% Una vez selecccionado el grupo, eligiré
+% aquel modelo cuyo error sea más próximo al error medio del grupo.
+% Eligo este criterío para que el modelo final no sea aquel que tenga ni el
+% peor ni el mejor rendimiento. Pues lo que más me interesa es que el
+% modelo tenga un rendimiento similar al obtenido durante su entrenamiento
+% y evaluación.
+%
+% *Si eligio el modelo con el *peor rendimiento* me aseguraría de que
+% el rendimiento de la red en el peor de los casos sería parecido al
+% despesempeñado durante el test, pero perdería la oportunidad de usar
+% otras redes que funcionan mejor.
+%
+% *Por el contrario, si eligo la red cuyo desempeño ha sido el más alto
+% durante su entrenamiento y su test de validación, me estoy arriesgando a
+% que dicha red en realidad no sea tan buena como aparenta. Pues existe la
+% posibilidad de que el test de validación era muy parecido a los de
+% entrenamiento y por eso ha obtenido muy buen rendimiento. Por lo que existe 
+% un posibilidad bastante alta de que si sometemos la red a otras situaciones 
+% su rendimiento empeore muchisimo. Lo cual haría su ejecución muy
+% impredecible al igual que el caso anterior.
+%
+% También puede suceder que debido a la estrutura de entrenamiento y testeo
+% que estoy aplicando, el test de dicha red ha sido más 'sencillo' que el
+% del resto de redes. Lo cual provocaría que la elección del modelo
+% estuviera sesgada.
+%
+% Es por estas razones por las que considero que la mejor opción es elegir
+% aquel modelo cuyo rendimiento está en la media del grupo. De esta forma
+% reducimos la posibilidad de que el modelo funcione peor de lo esperado, 
+% pero también la posibilidad de que funcione mejor.
+
+
+%% Creo los arreglos donde almcenaré los modelos
+%
+% Creo los arrays donde voy a almacenar los 18 modelos 
+
+% Modelos=cell(1,9);
+% Modelos_RBF=cell(1,9);
+
+%% Creación de los sets de entreno y evaluación 
+% Organizo los datos de la forma comentada:
+% 2 matrices para el entreno de tamaño 8000x9, una de entrada y la otra de
+% salida
+%
+% Las columnas tienen el siguiente orden:
+%
+% SetEntrada:
+% Entrada2, Entrada3, Entrada4, Entrada5, Entrada1, Entrada3, Entrada4,...
+%
+% SetSalida:
+% Salida2, Salida3, Salida4, Salida5, Salida1, Salida3, Salida4,...
+%
+% Mientras que las matrices de validacion siguen este orden:
+%
+% Entrada1, Entrada2, Entrada3,...
+% Salida1, Salida2, Salida3,...
+%
+% De esta forma entreno con 8 de los 9 ficheros y testeo con el restante
+
+% SetEntrada=[];
+% SetSalida=[];
+% ValidacionEntrada=[];
+% ValidacionSalida=[];
+% Errores_test=zeros(1,9);
+% Errores_Entrenamiento=zeros(1,9);
+% Errores_RBF=zeros(1,9);
+% Performance_Entrenamiento=zeros(1,9);
+% Performance_Test=zeros(1,9);
+
+% % El iterador i lo uso para especificar el set de validacion y el resto de
+% % sets serán los de entrenamiento
+% % Ejemplo:
+% %
+% % i=4->SetValidacion=4;SetEntreno=1,2,3,5,6,7,8,9
+
+% for i=1:9
+%     i;
+%     
+%     %Cargo los datos de valizacion en una matriz
+%     miniSetEntrada=[];
+%     miniSetSalida=[];
+%     [ValidacionEntrada,ValidacionSalida]=ActualizaDatos(ValidacionEntrada,ValidacionSalida,i,1);
+%     switch i
+%         case 1
+%             for j=2:9
+%                 j;
+%                 [miniSetEntrada,miniSetSalida]=ActualizaDatos(miniSetEntrada, miniSetSalida,j,0);
+%             end
+%         otherwise
+%             for j=1:i-1
+%                 j;
+%                 [miniSetEntrada,miniSetSalida]=ActualizaDatos(miniSetEntrada, miniSetSalida,j,0);
+%             end
+%             for j=i+1:9
+%                 j;
+%                 [miniSetEntrada,miniSetSalida]=ActualizaDatos(miniSetEntrada, miniSetSalida,j,0);
+%             
+%             end    
+%     end
+%     SetSalida=[SetSalida,miniSetSalida];
+%     SetEntrada=[SetEntrada,miniSetEntrada];
+%     
+% end
+% SetEntrada;
+% SetSalida;
+% ValidacionSalida;
+% ValidacionEntrada;
+
+
+%% ANN: red neuronal cascadeforward, perceptrón multicapa
+
+%% Configuracion:
+
+% A base de ir probando e ir modificando parametros he llegado a esta
+% configuración. 
+
+% NeuronasPorCapa=[20,50,20];
+% for i=1:9
+%     
+%     MiNet=cascadeforwardnet(NeuronasPorCapa);
+%     MiNet.divideParam.trainRatio=1;
+%     MiNet.divideFcn = 'dividerand';
+%     MiNet.trainParam.max_fail=20;
+%     MiNet.trainParam.epochs=100;
+%     MiNet.performFcn='mse';                     %MSE->Mean square error
+%     MiNet.trainParam.goal=1e-5;                 %Objetivo performance
+%     MiNet.trainParam.showWindow=false;
+
+%% Funciones de activacion de cada capa
+
+%     MiNet.layers{1}.transferFcn='tansig';
+%     MiNet.layers{2}.transferFcn='tansig';
+%     MiNet.layers{3}.transferFcn='tansig';
+
+%% Entreno de los 9 modelos cascadeforward  
+
+%     % Saco los datos de entrenamiento ordenados anteriormente
+%     DatosEntrada=SetEntrada(:,i);
+%     DatosSalida=SetSalida(:,i);
+%     % Entrenamiento
+%     [MiNet,InfoEntreno,SalidaEstimada,Error]=train(MiNet,DatosEntrada',DatosSalida');
+%     
+%     % Tenemos dos formar de medir el desempeño durante el entrenamiento:
+%     
+%     % *Con la función performance que nos da el error cuadrático medio entre
+%     % la salida estimada y la real
+%     
+%     % *Con el parametro error que devuelve el entrenamiento
+%     
+%     Errores_Entrenamiento(:,i)=mean(Error');
+%     % Error caudrático medio
+%     Perform_Entreno=perform(MiNet,DatosSalida',SalidaEstimada');
+%     Performance_Entrenamiento(:,i)=Perform_Entreno;
+%     Modelos{i}=MiNet;
+% end
+% Performance_Entrenamiento
+% Errores_Entrenamiento
+
+%% Test de los 9 modelos cascadeforward
+
+% for i=1:9
+%     
+%     MiNet=Modelos{i};
+%     DatosEntrada=ValidacionEntrada(:,i);
+%     DatosSalida=ValidacionSalida(:,i);
+%     SalidaEstimada=MiNet(DatosEntrada');
+%     
+%     % Calculo el error de de la salida estimada respecto a la salida de
+%     % validacion
+%     
+%     Errores_test(:,i)=mean(abs(SalidaEstimada'-DatosSalida));
+%     Perform_test=perform (MiNet,DatosSalida',SalidaEstimada');%Error cuadratico medio
+%     Performance_Test(:,i)=Perform_test;
+%     
+%     sgtitle('Test de todos los modelos CascadeForward') 
+%     subplot(3,3,i),plot([1:1000],DatosEntrada,[1:1000],SalidaEstimada,[1:1000],DatosSalida)
+%     title(['Evaluacion',int2str(i)],['Performance: ',num2str(Perform_test)])
+%     legend({'DatosEntrada','SalidaEstimada','DatosSalida'},'Location','southwest')
+%     
+% end
+% 
+% Performance_Test
+
+
+%% Calculo el error medio de cada modelo:
+
+% Errores_test
+
+%% Red RBF: Radia Basis Funtion Network
+%
+% Una vez creados los 9 modelos cascadeforward, creo los 9 modelos restantes
+% usando una red tipo RBF(Radio Funtion network).
+%
+% La función newbr irá aumentado la cantidad de neuronas en las capas
+% ocultas hasta alacanzar el error establecido como meta. El problema que
+% me ha surgido con este modelo reside en que la red por muchas neuronas
+% que meta, el error no baja de 6.01, por lo que pondré como meta un error
+% cuadrático medio de 6.015. Dicho rendimiento es alcanzado entre las 50 Y 0
+% neuronas en la capa oculta.
+
+%% Configuración
+
+
+% ObjetivoError=6.015;
+% SpreadCte=1;
+
+%% Creo las 9 redes RBF
+
+% for i=1:9
+%     DatosEntrada=SetEntrada(:,i);
+%     DatosSalida=SetSalida(:,i);
+%     MiNetRBF=newrb(DatosEntrada',DatosSalida',ObjetivoError,SpreadCte);
+%     Modelos_RBF{i}=MiNetRBF;
+% end
+
+%% Testeo de las 9 redes
+
+% for i=1:9
+%     MiNetRBF=Modelos_RBF{i};
+%     DatosEntrada=ValidacionEntrada(:,i);
+%     DatosSalida=ValidacionSalida(:,i);
+%     SalidaEstimadaRBF=MiNetRBF(DatosEntrada');
+%     Errores_RBF(:,i)=mean(abs(SalidaEstimadaRBF'-DatosSalida));
+%     sgtitle('Test de todos los modelos Radia Basis'); 
+%     subplot(3,3,i),plot([1:1000],DatosEntrada,[1:1000],SalidaEstimadaRBF,[1:1000],DatosSalida)
+%     title(['Evaluacion',int2str(i)],['Performance: ',num2str(Errores_RBF(:,i))])
+%     legend({'DatosEntrada','SalidaEstimada','DatosSalida'},'Location','southwest')
+% end
+% Errores_RBF
+% media_errores_RBF=mean(Errores_RBF')
+
+
+%% Conclusiones del entrenamiento de los modelos neuronales
+%
+% Como se puede ver, el resultado de las redes RBF es significativamente
+% mejor que el de las redes en cascasda, por lo que selecionaré una de estas
+% como modelo del sulfitador.
+% Siguiendo con la metodología explicada al principio del informe, eligiré
+% el modelo cuyo desempeño está más cercano a la media la cual vemos que
+% es: 2.19 aprox
+%
+% Por lo que el modelo que más se ajusta es el modelo 8. Esto lo podemos
+% ver en la figura que contiene el resultado de test de cada uno de los
+% modelos.
+%
+% Sin embargo, el error medio en todos los modelos es bastante grande y
+% podemos decir que el comporamiento de estos en general es muy malo.
+% Sospecho que se debe a la falta de datos de entrenamiento, de modo que si
+% este fuera el problema y no se pudiera disponer de más sets, se podrían
+% obtener más mezclando sets.
+%
+% Aún así, he probado a entrenar las redes variando muchos parametos y el
+% desempeño apenas mejoraba. Incluyendo la posibilidad de que entrenar una
+% red con un único set durante 500 epocas y haciendo la validación con ese 
+% mismo set de entrenamiento. 
+%
+% Sin embargo el modelo no mejoraba apenas, lo cual me daba a enteder que
+% el problema puede radicar en que este tipo de red no es adecuada para
+% simular este tipo de comportamientos. No obstante, creo que este no es 
+% el problema, sino  que radica en la manera en la que introduzco los valores de los
+% sets durante los entrenamientos, haciendo así incapaz a la red
+% de mejorar.
+%
+% Yo introduzco los datos de entrada y salida como columnas de 8000x1, la
+% concantenzación de los sets. Sin embargo, al introducir los valores de esta forma
+% la red solo es capaz de asociar el valor instantaneo de la entrada con el
+% valor instantaneo de la salida. De modo que no es capaz de seguir la
+% dinámica oscilatoria de muchos sets. Para que pudiera seguirla deberiamos
+% introducir todos los valores a la vez. De esta forma la red podría
+% conocer los valores anteriores y siguientes de cada instante e identificar
+% las diferentes dinámicas.
+%
+% A pesar de que esa fuera la solución, desconozco la forma de implementar
+% en simulink una red con 1000 entradas en el sistema dado en clase.
+
+%% Algoritno Genético
+%
+% Una vez que tenemos el modelo del sulfitudor obtenido mediante redes
+% neuronales. Pasamos a obtener los valores más adecuados para las Ke,Kd y Ku.
+% Para ello se usará un algoritmo genético y se estudiarán los resultados
+% para los dos modelos.
+%
+% La variable global solución es utilizada para muestrear los valores que
+% van tomando las Ks despues de cada iteración. Esta idea la tomé de mi
+% compañero Ángel Padilla, pues a el también le pasaba que muchas veces el
+% algoritmo tardaba mucho más del tiempo limite impuesto. De esta forma si
+% introducimos el comando Ctrl+C cortamos el proceso y podemos ver los
+% valores que ha ido almacenando.
+
+% global SulfitadorMamdani2022;
+% 
+% global Solucion;
+% global MiNet;
+% 
+% Solucion=[];
+% 
+% Modelos=load('Modelos.mat');
+% MiNet=Modelos.Modelos{1,5};
+% 
+% SulfitadorMamdani2022=readfis("P1.fis");
+% NParametrosSintonizar=3;
+% 
+% % Defino unos margenes algo amplios para no quedarme en 'mínimos locales'
+% 
+% lb=[0 0 0];%low bound -> limite inferior
+% ub=[20 20 20];%limite superior -> limite superior  
+% 
+% rng default;
+% 
+% funOBJ=@Funcion_FitnessObjetivo;
+% 
+% % Indico al algoritmo el tiempo maximo y el tamaño de la poblacion, de esta
+% % forma puedo limitar su ejecución y obtener los resultados que ha hecho,
+% % de lo contrario necesitaria un computador mucho más potente y más tiempo
+% % para ejecutar el algoritmo.
+% 
+% time=3600*4;% Para las simulaciones he usado tiempos de 3 a 4h
+% population=20;
+% options=gaoptimset('TimeLimit',time,'PopulationSize',population);
+% 
+% %Esta linea esta comentada, pero no tendría que estarlo pues es la qeu ejecuta el algoritmo. 
+% [X,EVAL,EXITFLAG,OUTPUT,POPULATION,Scores]=ga(funOBJ,NParametrosSintonizar,[],[],[],[],lb,ub,[],[],options);
+
+%% Funciones Fitness
+%
+% Como ya he comentado antes, es la misma función que la usada en el
+% Objetivo 1. Quiero usar la misma para que la optimización sea la misma
+% entre los dos objetivos y que la comparación de resultados no este
+% sesgada.
+
+% function Error = Funcion_FitnessObjetivo(K)
+% 
+% global SulfitadorMamdani2022;
+% global Solucion;
+% global MiNet;
+% 
+% opt=simset('SrcWorkspace','Current');
+% warning off
+% 
+% %Simulacion del sistema
+% Ke=K(1);
+% Kd=K(2);
+% Ku=K(3);
+% 
+% Final=1000;
+% t=(1:Final);
+% U(t)=[ones(1,Final/4)*7,ones(1,Final/4)*5,ones(1,Final/4)*9,ones(1,Final/4)*6];
+% Input=[t',U'];
+% [t,x,y]=sim('sulfitadornn.slx',t,opt,Input);
+% 
+% % Evaluacion; Para ver la evolucion de las Ks a lo largo de la optimización
+% Error=abs(mean(U'-y));
+% Solucion(end+1,1)=Ke;
+% Solucion(end,2)=Kd;
+% Solucion(end,3)=Ku;
+% Solucion(end,4)=Error;
+% end
+
+%% Resultados del AG:
+
+% Para el modelo de la red neuronal obtuve los siguientes resultados:
+% Ke=8.4587; Kd=1.7984; Ku=2.3936 
+% En las fotos del directorio 'Imagenes_Objetivo2' podemos observar como el algortimo va convergiendo hacia los valores
+% optimos.
+
+% Ke:
+% plot(Solucion(:,1))
+% title('Ke')
+% Kd:
+% plot(Solucion(:,2))
+% title('Kd')
+% Ku:
+% plot(Solucion(:,3))
+% title('Ku')
+
+%% Prueba con el modelo neuronal
+%
+% Al igual que para el otro objetivo, probamos varias entradas sobre el modelo neuronal y vemos su 
+% resultado con las Ks obtenidas por el AG.
+% 
+% Para poder simular la red neuronal en simulink hay que romper el lazo
+% algebriaco que se produce por la realimentación del lazo. La solución que
+% he encontrado ha sido añadir el bloque Unit Delay. A groso modo lo que
+% hace es implementar un retardo usando un tiempo de muestreo discreto
+% especificado por el usuario.
+% Ke=8.4587;
+% Kd=1.7984;
+% Ku=2.3936;
+
+% Ke=X(1)
+% Kd=X(2)
+% Ku=X(3)
+%% Entrada Escalón simple
+
+% Simula(2,1,t,Final);
+
+%% Secuencia de entradas escalón
+
+% Simula(2,2,t,Final);
+
+%% Entrada oscilatoria
+
+% Simula(2,3,t,Final);
+%% Conclusiones 
+%
+% Mientras que el resultado del objetivo 1 es muy bueno,
+% el comportamiento de la red se comporta extremadamente mal. No es capaz
+% de seguir el SetPoint en ninguno de los 3 casos.
+%
+% Era predecible su horrible comportamiento, pues el entrenamiento de la red ha sido
+% muy malo.
+%
+% Si se hubiera logrado hacer que la red aprendiera de forma correcta,
+% habría sido una opción más interesante que la de crear un modelo en
+% simulink del sulfitador, pues para crear el modelo de la red solo hace
+% falta tener datos de entrada y salida con los que entrenar el modelo.
+%
+% Mientras que para crear el gemelo digitial del sulfitador tendríamos que
+% profundizar en su funcionamiento y las ecuaciones que lo rigen.
+%
+% Luego, lo mejor siempre será tener un modelo digital de la planta, pero
+% en caso de tener que construirlo, la mejor opción será crear un modelo
+% basado en redes neuronales.
+
+%% Funcion usada para probar el modelo
+
+% function Simula(tipo_red,entrada,t,Final)
+% switch entrada
+%     case 1
+%         U(t)=ones(1,Final)*6;
+%     case 2
+%         U(t)=[ones(1,Final/4)*6,ones(1,Final/4)*8.25,ones(1,Final/4)*5.5,ones(1,Final/4)*6.3];
+%     case 3
+%         U(t)=sin(t*0.01)+6;
+% end
+% Input=[t',U'];
+% switch tipo_red
+%     case 1
+%         [a,b,y]=sim('sulfitador.slx',t,[],Input);
+%         error_medio=abs(mean(U'-y))
+%         figure('Name','Evaluacion modelo simulink');
+%         plot(t,U,'-',t,y,'REPLACE_WITH_DASH_DASH');
+%     case 2
+%         
+%         [a,b,y]=sim('sulfitadornn.slx',t,[],Input);
+%         error_medio=abs(mean(U'-y))
+%         figure('Name','Evaluacion modelo simulink');
+%         plot(t,U,'-',t,y,'REPLACE_WITH_DASH_DASH');
+% end
+% 
+% end
+
+%% Funcion usada para preparar los sets
+
+% function [SetEntrada,SetSalida]=ActualizaDatos(SetEntrada, SetSalida,j,tipo)
+% 
+%     filenameInPut=sprintf('Ph%d_input2022.mat',j);
+%     filenameOutPut=sprintf('Ph%d_OutPut2022.mat',j);
+%     DatosLeidosInput=load(filenameInPut);
+%     DatosEntrada=[DatosLeidosInput.Dt.Data];
+%     
+%     %Creamos el set de entrada
+%     if tipo==0
+%         SetEntrada=[SetEntrada;DatosEntrada];
+%     else
+%         SetEntrada=[SetEntrada,DatosEntrada];
+%     end
+%     
+%     DatosLeidosOutput=load(filenameOutPut);
+%     DatosSalida=[DatosLeidosOutput.ans.Data];
+%     %trunco la matriz a 1000
+%     DatosSalida=DatosSalida(1:1000,1);
+%     
+%     %Creamos el set de salida
+%     if tipo==0
+%         SetSalida= [SetSalida;DatosSalida];
+%     else
+%         SetSalida= [SetSalida,DatosSalida];
+%     end
+%     
+% end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>
