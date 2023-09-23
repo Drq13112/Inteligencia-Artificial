@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-"""Módulo que define el problema de las N reinas, colocarlas en un tablero sin amenazarse."""
-
 from problema_csp import ProblemaCSP
 
 class ColeradoGrafos(ProblemaCSP):
